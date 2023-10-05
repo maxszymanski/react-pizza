@@ -1,5 +1,5 @@
 function Username() {
-    return <p className="text-sm font-semibold">Max</p>
+    return <p className="hidden text-sm font-semibold md:block">Max</p>
 }
 
 export default Username
