@@ -8,7 +8,7 @@ function AppLayout() {
     const isLoading = navigation.state === 'loading'
 
     return (
-        <div className="relative grid h-screen grid-rows-[auto_1fr_auto]">
+        <div className="grid h-[100dvh] grid-rows-[auto_1fr_auto]">
             {isLoading && <Loader />}
 
             <Header />
