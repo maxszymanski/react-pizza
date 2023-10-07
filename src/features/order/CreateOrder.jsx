@@ -41,37 +41,49 @@ function CreateOrder() {
     const formErrors = useActionData()
 
     return (
-        <div>
-            <h2>Ready to order? Let's go!</h2>
+        <div className="px-4 py-6">
+            <h2 className="mb-8 text-xl font-semibold">
+                Ready to order? Let's go!
+            </h2>
             {/* Form from react-router  we can easy send data to server  */}
             <Form method="POST">
-                <div>
-                    <label>First Name</label>
-                    <input
-                        type="text"
-                        name="customer"
-                        className="input"
-                        required
-                    />
-                    {formErrors?.customer && <p>{formErrors.customer}</p>}
+                <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+                    <label className="sm:basis-40">First Name</label>
+                    <div className="grow">
+                        <input
+                            type="text"
+                            name="customer"
+                            className="input"
+                            required
+                        />
+                        {formErrors?.customer && (
+                            <p className="mt-2 rounded-full bg-red-100 p-2 text-center text-xs text-red-700">
+                                {formErrors.customer}
+                            </p>
+                        )}
+                    </div>
                 </div>
 
-                <div>
-                    <label>Phone number</label>
-                    <div>
+                <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+                    <label className="sm:basis-40">Phone number</label>
+                    <div className="grow">
                         <input
                             className="input"
                             type="tel"
                             name="phone"
                             required
                         />
+                        {formErrors?.phone && (
+                            <p className="mt-2 rounded-full bg-red-100 p-2 text-center text-xs text-red-700">
+                                {formErrors.phone}
+                            </p>
+                        )}
                     </div>
-                    {formErrors?.phone && <p>{formErrors.phone}</p>}
                 </div>
 
-                <div>
-                    <label>Address</label>
-                    <div>
+                <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+                    <label className="sm:basis-40">Address</label>
+                    <div className="grow">
                         <input
                             type="text"
                             name="address"
@@ -81,7 +93,7 @@ function CreateOrder() {
                     </div>
                 </div>
 
-                <div>
+                <div className="mb-12 flex items-center gap-5">
                     <input
                         type="checkbox"
                         name="priority"
@@ -90,7 +102,7 @@ function CreateOrder() {
                         // value={withPriority}
                         // onChange={(e) => setWithPriority(e.target.checked)}
                     />
-                    <label htmlFor="priority">
+                    <label htmlFor="priority" className="font-medium">
                         Want to yo give your order priority?
                     </label>
                 </div>
@@ -130,6 +142,6 @@ export async function action({ request }) {
 
     // if everythink is ok create new order
     const newOrder = await createOrder(order)
-    return redirect(`/order/${newOrder.id}`) // dont use useNavigate but redirect
+    return redirect(`/order/${newOrder.id}`) // dont use useNavigate but redirect to navigate if form is true
 }
 export default CreateOrder
