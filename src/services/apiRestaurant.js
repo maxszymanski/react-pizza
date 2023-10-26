@@ -35,7 +35,6 @@ export async function createOrder(newOrder) {
         throw Error('Failed creating your order')
     }
 }
-
 export async function updateOrder(id, updateObj) {
     try {
         const res = await fetch(`${API_URL}/order/${id}`, {
